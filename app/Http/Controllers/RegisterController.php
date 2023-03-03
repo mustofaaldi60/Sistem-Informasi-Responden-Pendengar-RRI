@@ -15,9 +15,9 @@ class RegisterController extends Controller
     {
         // return response()->json($request->all());
         $rules = [
-            'name' => ['required', 'max:255'],
-            'email' => ['required', 'email:dns', 'max:255', 'unique:users'],
-            'password' => ['required', 'min:5', 'max:255']
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email:dns', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
 
         $validated = $request->validate($rules);
@@ -26,6 +26,6 @@ class RegisterController extends Controller
 
         User::create($validated);
 
-        return redirect('/dashboard');
+        return redirect()->to('/home');
     }
 }

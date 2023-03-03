@@ -19,16 +19,24 @@ use App\Http\Controllers\RegisterController;
 //     return view('welcome');
 // });
 
-Route::get('/', fn () => view('home'));
+Route::middleware(['guest'])->group(function () {
+    // Home Page
+    Route::get('/', fn () => view('home'));
 
-// Register
-Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    // Register
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-// Login
-Route::get('/login', [LoginController::class, 'index'])->name('login.index');
-Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+    // Login
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+
+    // Logout
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', fn () => view('admin.home'));
+    // Dashboard Page
+    Route::get('/home', fn () => view('admin.home'));
 });

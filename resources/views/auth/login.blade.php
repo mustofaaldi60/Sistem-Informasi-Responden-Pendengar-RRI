@@ -1,63 +1,85 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- Bagian SEO --}}
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.108.0">
-    {{-- Bagian SEO --}}
-    <title>{{ env('APP_NAME') }} | Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ env('APP_NAME') }} | Log in</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="css/sign-in.css" rel="stylesheet">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="AdminLTE/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="AdminLTE/dist/css/adminlte.min.css">
 </head>
-<body class="text-center">
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href="/" class="h1 text-dark">{{ env('APP_NAME') }}</a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
 
-    <main class="form-signin w-100 m-auto">
-        @if(session('failed'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {{ session('failed') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-        <form method="POST" action="/login">
-            @csrf
-            <h1 class="h3 mb-3 fw-normal">Please Login</h1>
-
-            <div class="form-floating">
-                <input type="email" class="form-control @error('email')
-                    is-invalid
-                @enderror" id="email" placeholder="name@example.com" name="email" value="{{ old('email') }}" required>
-                <label for="email">Email address</label>
-                @error('email')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+        <form action="/login" method="post">
+          @csrf
+          <div class="input-group mb-3">
+            <input type="email" id="email" class="form-control @error('email')
+              is-invalid
+          @enderror" placeholder="Email" name="email" value="{{ old('email') }}" autofocus required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control @error('password')
-                    is-invalid
-                @enderror" id="floatingPassword" placeholder="Password" name="password" required>
-                <label for="floatingPassword">Password</label>
-                @error('password')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control @error('password')
+                is-invalid
+            @enderror" placeholder="Password" required name="password" required autocomplete="current-password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
             </div>
-
-
-            <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
-            <span class="d-block text-center text-capitalize">Do you a new member? <a href="/register" class="text-decoration-none text-dark">Register Account</a></span>
-
-            <p class="mt-5 mb-3 text-muted">&copy; 2023 - {{ date('Y') }}</p>
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+          <div class="row d-flex justify-content-center">
+            <!-- /.col -->
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </div>
+            <!-- /.col -->
+          </div>
         </form>
-    </main>
+
+        <p class="mb-0 row d-flex justify-content-center">
+          <a href="/register" class="text-center text-dark text-decoration-none">Register a new membership</a>
+        </p>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="AdminLTE/dist/js/adminlte.min.js"></script>
 </body>
 </html>
