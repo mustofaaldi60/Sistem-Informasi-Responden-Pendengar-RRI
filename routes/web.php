@@ -31,10 +31,10 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 
-    // Logout
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard Page
