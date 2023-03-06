@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\{LoginController, RegisterController};
+use App\Http\Controllers\Admin\{AcaraController, SiaranController};
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +30,19 @@ Route::middleware(['guest'])->group(function () {
     // Login
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-
 });
 
-// Logout
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard Page
     Route::get('/home', fn () => view('admin.home'));
+
+    // Siaran
+    Route::resource('/siaran', SiaranController::class);
+
+    // Acara
+    Route::resource('/acara', AcaraController::class);
+
+    // Logout
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

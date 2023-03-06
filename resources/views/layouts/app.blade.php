@@ -1,5 +1,5 @@
-@extends('partials\header')
+@extends('partials.header')
 
 @yield('main')
 
-@extends('partials\footer')
+@extends('partials.footer')

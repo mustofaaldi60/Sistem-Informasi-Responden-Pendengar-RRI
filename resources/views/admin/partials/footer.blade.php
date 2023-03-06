@@ -1,5 +1,7 @@
   <!-- jQuery -->
   <script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 5 -->
+  <script src="Bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
@@ -8,5 +10,5 @@
   <script src="AdminLTE/dist/js/demo.js"></script>
 
 
-</body>
-</html>
+  </body>
+  </html>
