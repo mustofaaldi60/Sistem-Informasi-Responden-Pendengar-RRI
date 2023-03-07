@@ -21,10 +21,18 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a href="/siaran" class="nav-link {{ Request::is('/siaran') ? 'active' :  '' }}">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="/siaran" class="nav-link">
+                <i class="nav-icon fas fa-broadcast-tower"></i>
                 <p>
                     Siaran
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/acara" class="nav-link">
+                <i class="nav-icon fas fa-bookmark"></i>
+                <p>
+                    Acara
                 </p>
             </a>
         </li>

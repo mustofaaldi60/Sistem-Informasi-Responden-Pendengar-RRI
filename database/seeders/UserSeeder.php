@@ -17,10 +17,10 @@ class UserSeeder extends Seeder
     {
         // buat test login aja
         User::create([
-            'name' => 'aldi',
-            'email' => 'mustofaaldi60@gmail.com',
+            'name' => 'Admin Responden',
+            'email' => 'admin.respondenrri@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('aldi123'), // password
+            'password' => bcrypt('password'), // password
             'remember_token' => Str::random(10),
         ]);
     }

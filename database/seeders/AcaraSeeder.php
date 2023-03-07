@@ -14,10 +14,6 @@ class AcaraSeeder extends Seeder
      */
     public function run()
     {
-        Acara::create([
-            'nama' => 'Pro 1',
-            'slug' => 'pro-1',
-            'frekuensi' => '97,6'
-        ]);
+        //
     }
 }

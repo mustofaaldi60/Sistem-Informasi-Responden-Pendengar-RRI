@@ -1,4 +1,3 @@
-@dd($acaras)
 @extends('admin.layouts.app')
 
 @section('breadcrumb')
@@ -44,8 +43,8 @@
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $acara->nama }}</td>
-                        <td>{{ $acara->slug }}</td>
-                        <td>{{ $acara->frekuensi }}</td>
+                        <td>{{ $acara->jenis }}</td>
+                        <td>{{ $acara->penyiar }}</td>
                         <td>
                             <a href="{{ route('acara.edit', $acara->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('acara.destroy', $acara->id) }}" method="post" class="d-inline-block">
@@ -58,7 +57,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $acara->links() }}
+            {{ $acaras->links() }}
         </div>
     </div>
 </section>
