@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Siaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Cviebrock\EloquentSluggable\Services\SlugService;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SiaranController extends Controller
 {

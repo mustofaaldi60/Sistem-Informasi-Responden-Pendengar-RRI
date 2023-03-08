@@ -10,6 +10,17 @@
   <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
   <!-- date-range-picker -->
   <script src="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
+  <!-- Eloquent Sluggable -->
+  <script>
+    const nama = document.getElementById('nama');
+    const slug = document.getElementById('slug');
+
+    nama.addEventListener('change', function() {
+      fetch('/siaran/checkSlug?nama=' + nama.value)
+        .then(response => response.json())
+        .then(data => slug.value = data.slug)
+    });
+  </script>
 
 
 </body>

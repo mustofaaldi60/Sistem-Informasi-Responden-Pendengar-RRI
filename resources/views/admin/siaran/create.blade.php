@@ -39,7 +39,7 @@
           <label for="slug">Slug</label>
           <input type="text" class="form-control @error('slug')
                 is-invalid
-            @enderror" id="slug" placeholder="Example: joe" required value="{{ old('slug') }}" name="slug">
+            @enderror" id="slug" placeholder="Example: joe" required readonly value="{{ old('slug') }}" name="slug">
           @error('slug')
           <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -65,8 +65,8 @@
   </div>
 </section>
 <script>
-  const nama = document.querySelector('#nama');
-  const slug = document.querySelector('#slug');
+  const nama = document.getElementById('nama');
+  const slug = document.getElementById('slug');
 
   nama.addEventListener('change', function() {
     fetch('/siaran/checkSlug?nama=' + nama.value)
