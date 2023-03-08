@@ -51,8 +51,8 @@
                         <td>{{ $acara->jenis }}</td>
                         <td>{{ $acara->penyiar }}</td>
                         <td>{{ $acara->siaran->nama }}</td>
-                        <td>{{ $acara->hari }}</td>
-                        <td>{{ $acara->jam->time() }}</td>
+                        <td>{{ \Carbon\Carbon::parse($acara->hari)->format('jS F Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($acara->jam)->format('H:i') }}</td>
                         <td>
                             <a href="{{ route('acara.edit', $acara->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('acara.destroy', $acara->id) }}" method="post" class="d-inline-block">
