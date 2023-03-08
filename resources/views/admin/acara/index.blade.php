@@ -22,6 +22,11 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
+        @if(session('success'))
+        <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+        </div>
+        @endif
             <a href="/acara/create" class="btn btn-sm btn-primary">Tambah</a>
         </div>
         <div class="card-body">
@@ -45,6 +50,9 @@
                         <td>{{ $acara->nama }}</td>
                         <td>{{ $acara->jenis }}</td>
                         <td>{{ $acara->penyiar }}</td>
+                        <td>{{ $acara->siaran->nama }}</td>
+                        <td>{{ $acara->hari }}</td>
+                        <td>{{ $acara->jam->time() }}</td>
                         <td>
                             <a href="{{ route('acara.edit', $acara->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('acara.destroy', $acara->id) }}" method="post" class="d-inline-block">

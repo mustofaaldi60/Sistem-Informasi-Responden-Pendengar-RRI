@@ -23,6 +23,6 @@ class Acara extends Model
      */
     public function siaran(): BelongsTo
     {
-        return $this->belongsTo(Siaran::class,'id');
+        return $this->belongsTo(Siaran::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Acara;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Siaran;
 
 class AcaraController extends Controller
 {
@@ -27,7 +28,9 @@ class AcaraController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.acara.create',[
+            'siarans' => Siaran::all()
+        ]);
     }
 
     /**
@@ -38,7 +41,18 @@ class AcaraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => ['required','min:4','max:255','string'],
+            'jenis' => ['required','min:4','max:255','string'],
+            'penyiar' => ['required','min:4','max:255','string'],
+            'hari' => ['required','string'],
+            'jam' => ['required','string'],
+            'siaran_id' => ['required'],
+        ]);
+
+        Acara::create($validate);
+
+        return redirect('/acara')->with('success','Added Successfully!');
     }
 
     /**
@@ -60,7 +74,10 @@ class AcaraController extends Controller
      */
     public function edit(Acara $acara)
     {
-        //
+        return view('admin.acara.edit',[
+            'acaras' => $acara,
+            'siarans' => Siaran::all()
+        ]);
     }
 
     /**
@@ -72,7 +89,20 @@ class AcaraController extends Controller
      */
     public function update(Request $request, Acara $acara)
     {
-        //
+        $rules = [
+            'nama' => ['required','min:4','max:255','string'],
+            'jenis' => ['required','min:4','max:255','string'],
+            'penyiar' => ['required','min:4','max:255','string'],
+            'hari' => ['required','string'],
+            'jam' => ['required','string'],
+            'siaran_id' => ['required'],
+        ];
+
+        $validate = $request->validate($rules);
+
+        Acara::where('id',$acara->id)->update($validate);
+
+        return redirect('/acara')->with('success','Updated Successfully!');
     }
 
     /**
@@ -83,6 +113,8 @@ class AcaraController extends Controller
      */
     public function destroy(Acara $acara)
     {
-        //
+        Acara::destroy($acara->id);
+
+        return redirect('/acara')->with('success','Deleted Successfully!');
     }
 }

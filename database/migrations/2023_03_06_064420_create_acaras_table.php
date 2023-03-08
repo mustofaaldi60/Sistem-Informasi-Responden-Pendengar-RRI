@@ -16,12 +16,11 @@ class CreateAcarasTable extends Migration
         Schema::create('acaras', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siaran_id');
-            $table->string('no')->nullable();
             $table->string('nama')->nullable();
             $table->string('jenis')->nullable();
             $table->string('penyiar')->nullable();
             $table->date('hari')->nullable();
-            $table->dateTime('jam')->nullable();
+            $table->time('jam')->nullable();
             $table->timestamps();
         });
     }

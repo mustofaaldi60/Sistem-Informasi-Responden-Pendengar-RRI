@@ -38,10 +38,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', fn () => view('admin.home'));
 
     // Siaran
-    Route::resource('/siaran', SiaranController::class);
+    Route::resource('/siaran', SiaranController::class)->except('show');
+    Route::get('/siaran/checkSlug', [SiaranController::class, 'checkSlug'])->name('siaran.slug');
 
     // Acara
-    Route::resource('/acara', AcaraController::class);
+    Route::resource('/acara', AcaraController::class)->except('show');
 
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

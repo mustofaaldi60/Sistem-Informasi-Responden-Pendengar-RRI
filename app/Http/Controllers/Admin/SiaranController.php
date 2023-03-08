@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Siaran;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class SiaranController extends Controller
 {
@@ -27,7 +28,7 @@ class SiaranController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.siaran.create');
     }
 
     /**
@@ -38,7 +39,15 @@ class SiaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => ['required','string'],
+            'slug' => ['required','string'],
+            'frekuensi' => ['required','string']
+        ]);
+
+        Siaran::create($validate);
+
+        return redirect('/siaran')->with('success','Added Successfully!');
     }
 
     /**
@@ -60,7 +69,9 @@ class SiaranController extends Controller
      */
     public function edit(Siaran $siaran)
     {
-        //
+        return view('admin.siaran.edit',[
+            'siarans' => $siaran
+        ]);
     }
 
     /**
@@ -72,7 +83,17 @@ class SiaranController extends Controller
      */
     public function update(Request $request, Siaran $siaran)
     {
-        //
+        $rules = [
+            'nama' => ['required','string'],
+            'slug' => ['required','string'],
+            'frekuensi' => ['required','string']
+        ];
+
+        $validate = $request->validate($rules);
+
+        Siaran::where('id',$siaran->id)->update($validate);
+
+        return redirect('/siaran')->with('success','Updated Successfully!');
     }
 
     /**
@@ -83,6 +104,15 @@ class SiaranController extends Controller
      */
     public function destroy(Siaran $siaran)
     {
-        //
+        Siaran::destroy($siaran->id);
+
+        return redirect('/siaran')->with('success','Deleted Successfully!');
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Siaran::class, 'slug', $request->nama);
+
+        return response()->json(['slug' => $slug]);
     }
 }
