@@ -17,7 +17,7 @@ class AcaraController extends Controller
     public function index()
     {
         return view('admin.acara.index', [
-            'acaras' => Acara::latest()->paginate(15)
+            'acaras' => Acara::latest()->with('siaran')->paginate(15)
         ]);
     }
 
