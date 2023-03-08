@@ -28,7 +28,7 @@
           <label for="nama">Nama</label>
           <input type="text" class="form-control @error('nama')
                 is-invalid
-            @enderror" id="nama" placeholder="Example: Joe" required autofocus value="{{ old('nama') }}" name="nama">
+            @enderror" id="nama" placeholder="Example: RRI Pro 1" required autofocus value="{{ old('nama') }}" name="nama">
           @error('nama')
           <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
           <label for="slug">Slug</label>
           <input type="text" class="form-control @error('slug')
                 is-invalid
-            @enderror" id="slug" placeholder="Example: joe" required readonly value="{{ old('slug') }}" name="slug">
+            @enderror" id="slug" placeholder="Example: rri-pro-1" required readonly value="{{ old('slug') }}" name="slug">
           @error('slug')
           <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -64,14 +64,4 @@
     </div>
   </div>
 </section>
-<script>
-  const nama = document.getElementById('nama');
-  const slug = document.getElementById('slug');
-
-  nama.addEventListener('change', function() {
-    fetch('/siaran/checkSlug?nama=' + nama.value)
-      .then(response => response.json())
-      .then(data => slug.value = data.slug)
-  });
-</script>
 @endsection
