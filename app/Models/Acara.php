@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Siaran;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +15,7 @@ class Acara extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['no','nama','jenis','penyiar','siaran_id','hari','jam'];
+    protected $fillable = ['nama','jenis','penyiar','siaran_id','hari','jam'];
 
     /**
      * Get the siaran that owns the Acara

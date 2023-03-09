@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{LoginController, RegisterController};
-use App\Http\Controllers\Admin\{AcaraController, SiaranController};
+use App\Http\Controllers\Admin\{AcaraController, RespondenController, SiaranController};
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +43,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Acara
     Route::resource('/acara', AcaraController::class)->except('show');
-    
-    //Interaksi
-    Route::resource('/interaksi', InteraksiController::class)->except('show');
+
+    // Responden
+    Route::get('/responden', [RespondenController::class,'index'])->name('responden.index');
+    Route::get('/responden/cetak', [RespondenController::class,'cetak'])->name('responden.cetak');
 
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

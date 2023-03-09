@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInteraksisTable extends Migration
+class CreateRespondensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateInteraksisTable extends Migration
      */
     public function up()
     {
-        Schema::create('interaksis', function (Blueprint $table) {
+        Schema::create('respondens', function (Blueprint $table) {
             $table->id();
-            $table->string('jadwal')->nullable();
-            $table->string('nama_acara')->nullable();
+            $table->foreignId('acara_id')->nullable();
+            $table->dateTime('jadwal')->nullable();
             $table->string('pendengar')->nullable();
-            $table->varchar('usia')->nullable();
+            $table->string('usia')->nullable();
             $table->string('kelamin')->nullable();
-            $table->int('telepon')->nullable();
-            $table->string('respon_pendengar')->nullable();
+            $table->string('telepon')->nullable();
+            $table->text('respon_pendengar')->nullable();
             $table->string('rating')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -33,6 +34,6 @@ class CreateInteraksisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('interaksis');
+        Schema::dropIfExists('respondens');
     }
 }
