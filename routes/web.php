@@ -43,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Acara
     Route::resource('/acara', AcaraController::class)->except('show');
+    
+    //Interaksi
+    Route::resource('/interaksi', InteraksiController::class)->except('show');
 
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
