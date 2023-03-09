@@ -14,7 +14,7 @@ class AcaraFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => $this->faker->sentence(2),
+            'nama' => $this->faker->randomElement(['Musik Pagi','Musik Siang','Musik Sore','Radio Olahraga Samarinda','Day to Night Quiz']),
             'jenis' => $this->faker->randomElement(['Request Lagu','Responden']),
             'siaran_id' => mt_rand(1,3),
             'penyiar' => $this->faker->randomElement(['Aldi Mustofa','Viola Dwi Prastica W','Deuwi Satriya Irawan']),
