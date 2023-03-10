@@ -23,7 +23,7 @@ class Responden extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function acara(): BelongsTo
     {
         return $this->belongsTo(Acara::class);
     }

@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/acara', AcaraController::class)->except('show');
 
     // Responden
-    Route::get('/responden', [RespondenController::class,'index'])->name('responden.index');
+    Route::resource('/responden', RespondenController::class)->only(['index','destroy']);
     Route::get('/responden/cetak', [RespondenController::class,'cetak'])->name('responden.cetak');
 
     // Logout

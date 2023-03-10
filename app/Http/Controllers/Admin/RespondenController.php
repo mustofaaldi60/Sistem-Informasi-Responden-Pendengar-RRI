@@ -16,7 +16,7 @@ class RespondenController extends Controller
     public function index()
     {
         return view('admin.responden.index', [
-            'respondens' => Responden::latest()->with('acara')->paginate(15)
+            'respondens' => Responden::latest()->with('acara')->paginate(10)
         ]);
     }
 
@@ -83,7 +83,9 @@ class RespondenController extends Controller
      */
     public function destroy(Responden $responden)
     {
-        //
+        Responden::destroy($responden->id);
+
+        return redirect('/responden')->with('success','Deleted Successfully!');
     }
 
     public function cetak()
