@@ -1,3 +1,4 @@
+@dd($respondens)
 @extends('admin.layouts.app')
 
 @section('breadcrumb')
@@ -5,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="h1 text-dark">Interaksi Page</h1>
+                <h1 class="h1 text-dark">Responden Page</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Daftar Interaksi</li>
+                    <li class="breadcrumb-item active">Daftar Responden</li>
                 </ol>
             </div>
         </div>
@@ -22,12 +23,12 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-        @if(session('success'))
-        <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-        </div>
-        @endif
-            <a href="/interaksi/create" class="btn btn-sm btn-primary">Tambah</a>
+            @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
+            <a href="/responden/create" class="btn btn-sm btn-primary">Tambah</a>
         </div>
         <div class="card-body">
             <table class="table">
@@ -45,21 +46,21 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    @foreach ($interaksis as $interaksi)
+                    @foreach ($respondens as $responden)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $interaksi->jadwal }}</td>
-                        <td>{{ $interaksi->nama_acara }}</td>
-                        <td>{{ $interaksi->pendengar}}</td>
-                        <td>{{ $interaksi->usia }}</td>
-                        <td>{{ $interaksi->kelamin }}</td>
-                        <td>{{ $interaksi->telepon }}</td>
-                        <td>{{ $interaksi->respon_pendengar}}</td>
-                        <td>{{ $interaksi->rating }}</td>
+                        <td>{{ $responden->jadwal }}</td>
+                        <td>{{ $responden->nama_acara }}</td>
+                        <td>{{ $responden->pendengar}}</td>
+                        <td>{{ $responden->usia }}</td>
+                        <td>{{ $responden->kelamin }}</td>
+                        <td>{{ $responden->telepon }}</td>
+                        <td>{{ $responden->respon_pendengar}}</td>
+                        <td>{{ $responden->rating }}</td>
 
                         <td>
-                            <a href="{{ route('interaksi.edit', $interaksi->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('interaksi.destroy', $interaksi->id) }}" method="post" class="d-inline-block">
+                            <a href="{{ route('responden.edit', $responden->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('responden.destroy', $responden->id) }}" method="post" class="d-inline-block">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('are you sure?')">Delete</button>
@@ -69,7 +70,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $interaksis->links() }}
+            {{ $respondens->links() }}
         </div>
     </div>
 </section>

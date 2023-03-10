@@ -22,11 +22,11 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-        @if(session('success'))
-        <div class="alert alert-success" role="alert">
-        {{ session('success') }}
-        </div>
-        @endif
+            @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
             <a href="/acara/create" class="btn btn-sm btn-primary">Tambah</a>
         </div>
         <div class="card-body">
@@ -51,7 +51,7 @@
                         <td>{{ $acara->jenis }}</td>
                         <td>{{ $acara->penyiar }}</td>
                         <td>{{ $acara->siaran->nama }}</td>
-                        <td>{{ \Carbon\Carbon::parse($acara->hari)->format('jS F Y') }}</td>
+                        <td>{{ \Carbon\Carbon::parse($acara->hari)->format('D') }}</td>
                         <td>{{ \Carbon\Carbon::parse($acara->jam)->format('H:i') }}</td>
                         <td>
                             <a href="{{ route('acara.edit', $acara->id) }}" class="btn btn-sm btn-warning">Edit</a>

@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Interaksi;
+use App\Models\Responden;
 
-class InteraksiSeeder extends Seeder
+class RespondenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class InteraksiSeeder extends Seeder
      */
     public function run()
     {
-        Interaksi::factory(50)->create();
+        Responden::factory(50)->create();
     }
 }

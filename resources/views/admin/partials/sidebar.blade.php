@@ -1,24 +1,15 @@
 <!-- Sidebar Menu -->
-<nav class="mt-2">
+<nav class="mt-2 nav-height">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <a href="/home" class="nav-link {{ Request::is('/home') ? 'active' :  '' }}">
+            <a href="/home" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
-                    <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="/home" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-            </ul>
         </li>
         <li class="nav-item">
             <a href="/siaran" class="nav-link">
@@ -33,6 +24,14 @@
                 <i class="nav-icon fas fa-bookmark"></i>
                 <p>
                     Acara
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/responden" class="nav-link">
+                <i class="nav-icon fas fa-user-tag"></i>
+                <p>
+                    Responden
                 </p>
             </a>
         </li>

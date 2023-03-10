@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Acara;
-use App\Models\Interaksi;
+use App\Models\Responden;
 use Illuminate\Http\Request;
-use App\Models\Siaran;
+use App\Http\Controllers\Controller;
 
-class InteraksiController extends Controller
+class RespondenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class InteraksiController extends Controller
      */
     public function index()
     {
-        return view('admin.interaksi.index', [
-            'Interaksis' => Interaksi::latest()->with()->paginate(15)
+        return view('admin.responden.index', [
+            'respondens' => Responden::latest()->with('acara')->paginate(15)
         ]);
     }
 
@@ -45,10 +44,10 @@ class InteraksiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Interaksi  $interaksi
+     * @param  \App\Models\Responden  $responden
      * @return \Illuminate\Http\Response
      */
-    public function show(Interaksi $interaksi)
+    public function show(Responden $responden)
     {
         //
     }
@@ -56,10 +55,10 @@ class InteraksiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Interaksi  $interaksi
+     * @param  \App\Models\Responden  $responden
      * @return \Illuminate\Http\Response
      */
-    public function edit(Interaksi $interaksi)
+    public function edit(Responden $responden)
     {
         //
     }
@@ -68,10 +67,10 @@ class InteraksiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Interaksi  $interaksi
+     * @param  \App\Models\Responden  $responden
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Interaksi $interaksi)
+    public function update(Request $request, Responden $responden)
     {
         //
     }
@@ -79,11 +78,15 @@ class InteraksiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Interaksi  $interaksi
+     * @param  \App\Models\Responden  $responden
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Interaksi $interaksi)
+    public function destroy(Responden $responden)
     {
         //
+    }
+
+    public function cetak()
+    {
     }
 }
