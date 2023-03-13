@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Database\Seeders\{UserSeeder, RespondenSeeder, SiaranSeeder};
+use Database\Seeders\{UserSeeder, RespondenSeeder, SiaranSeeder, RequestLaguSeeder};
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AcaraSeeder::class,
             RespondenSeeder::class,
             SiaranSeeder::class,
+            RequestLaguSeeder::class
         ]);
     }
 }

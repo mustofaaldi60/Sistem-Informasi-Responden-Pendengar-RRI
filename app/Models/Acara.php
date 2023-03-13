@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Siaran;
+use App\Models\Responden;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,5 +26,10 @@ class Acara extends Model
     public function siaran(): BelongsTo
     {
         return $this->belongsTo(Siaran::class);
+    }
+
+    public function respondens()
+    {
+        return $this->hasMany(Responden::class);    
     }
 }
