@@ -41,7 +41,7 @@ class SiaranController extends Controller
     {
         $validate = $request->validate([
             'nama' => ['required','string'],
-            'slug' => ['required','string'],
+            'slug' => ['required','string','unique:siarans'],
             'frekuensi' => ['required','string']
         ]);
 
@@ -85,9 +85,16 @@ class SiaranController extends Controller
     {
         $rules = [
             'nama' => ['required','string'],
-            'slug' => ['required','string'],
             'frekuensi' => ['required','string']
         ];
+
+        if($request->slug == $siaran->slug){
+            $rules['slug'] = ['required','string'];
+        }
+
+        if($request->slug != $siaran->slug){
+            $rules['slug'] = ['required','string','unique:siarans'];
+        }
 
         $validate = $request->validate($rules);
 
