@@ -15,8 +15,6 @@ class RequestLaguController extends Controller
      */
     public function index()
     {
-        // $lagus = RequestLagu::latest()->paginate(10);
-        // return ddd($lagus);
         return view('admin.request-lagu.index', [
             'lagus' => RequestLagu::latest()->paginate(10)
         ]);
@@ -29,7 +27,7 @@ class RequestLaguController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.request-lagu.create');
     }
 
     /**
@@ -62,7 +60,9 @@ class RequestLaguController extends Controller
      */
     public function edit(RequestLagu $requestLagu)
     {
-        //
+        return view('admin.request-lagu.edit',[
+            'lagus' => $requestLagu
+        ]);
     }
 
     /**

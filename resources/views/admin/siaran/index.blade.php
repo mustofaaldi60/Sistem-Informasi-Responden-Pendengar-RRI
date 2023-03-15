@@ -48,8 +48,8 @@
             <td>{{ $siaran->slug }}</td>
             <td>{{ $siaran->frekuensi }}</td>
             <td>
-              <a href="{{ route('siaran.edit', $siaran->id) }}" class="btn btn-sm btn-warning">Edit</a>
-              <form action="{{ route('siaran.destroy', $siaran->id) }}" method="post" class="d-inline-block">
+              <a href="{{ route('siaran.edit', $siaran->slug) }}" class="btn btn-sm btn-warning">Edit</a>
+              <form action="{{ route('siaran.destroy', $siaran->slug) }}" method="post" class="d-inline-block">
                 @csrf
                 @method('delete')
                 <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('are you sure?')">Delete</button>

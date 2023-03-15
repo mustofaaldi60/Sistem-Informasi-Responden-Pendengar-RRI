@@ -24,27 +24,29 @@
     <div class="card-body">
       <form action="/siaran" method="POST">
         @csrf
-        <div class="form-group">
-          <label for="nama">Nama</label>
-          <input type="text" class="form-control @error('nama')
-                is-invalid
-            @enderror" id="nama" placeholder="Example: RRI Pro 1" required autofocus value="{{ old('nama') }}" name="nama">
-          @error('nama')
-          <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="slug">Slug</label>
-          <input type="text" class="form-control @error('slug')
-                is-invalid
-            @enderror" id="slug" placeholder="Example: rri-pro-1" required readonly value="{{ old('slug') }}" name="slug">
-          @error('slug')
-          <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-          </span>
-          @enderror
+        <div class="row">
+            <div class="form-group col-md-6">
+              <label for="nama">Nama</label>
+              <input type="text" class="form-control @error('nama')
+                    is-invalid
+                @enderror" id="nama" placeholder="Example: RRI Pro 1" required autofocus value="{{ old('nama') }}" name="nama">
+              @error('nama')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+              @enderror
+            </div>
+            <div class="form-group col-md-6">
+              <label for="slug">Slug</label>
+              <input type="text" class="form-control @error('slug')
+                    is-invalid
+                @enderror" id="slug" placeholder="Example: rri-pro-1" required readonly value="{{ old('slug') }}" name="slug">
+              @error('slug')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+              @enderror
+            </div>
         </div>
         <div class="form-group">
           <label for="frekuensi">Frekuensi</label>

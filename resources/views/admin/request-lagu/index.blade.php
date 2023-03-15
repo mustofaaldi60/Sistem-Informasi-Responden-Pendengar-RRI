@@ -48,8 +48,8 @@
                         <td>{{ $lagu->genre }}</td>
                         <td>{{ $lagu->album }}</td>
                         <td>
-                            <a href="{{ route('lagu.edit', $lagu->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ route('lagu.destroy', $lagu->id) }}" method="post" class="d-inline-block">
+                            <a href="/request-lagu/{{ $lagu->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="/request-lagu/{{ $lagu->id }}" method="post" class="d-inline-block">
                                 @csrf
                                 @method('delete')
                                 <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('are you sure?')">Delete</button>
