@@ -38,7 +38,17 @@ class RequestLaguController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'title' => ['required', 'string'],
+            'artis' => ['required', 'string'],
+            'genre' => ['required', 'string'],
+            'album' => ['required', 'string'],
+            'guest_name' => ['required', 'string', 'min:8'],
+        ]);
+
+        RequestLagu::create($validate);
+
+        return redirect('/request-lagu')->with('success', 'Added Successfully!');
     }
 
     /**
@@ -60,7 +70,7 @@ class RequestLaguController extends Controller
      */
     public function edit(RequestLagu $requestLagu)
     {
-        return view('admin.request-lagu.edit',[
+        return view('admin.request-lagu.edit', [
             'lagus' => $requestLagu
         ]);
     }
@@ -74,7 +84,24 @@ class RequestLaguController extends Controller
      */
     public function update(Request $request, RequestLagu $requestLagu)
     {
-        //
+        $rules = [
+            'title' => ['required', 'string'],
+            'artis' => ['required', 'string'],
+            'genre' => ['required', 'string'],
+            'album' => ['required', 'string'],
+            'guest_name' => ['required', 'string', 'min:8']
+        ];
+
+        $request['title'] == $requestLagu['title'] ? $rules['title'] : null;
+        $request['artis'] == $requestLagu['artis'] ? $rules['artis'] : null;
+        $request['genre'] == $requestLagu['genre'] ? $rules['genre'] : null;
+        $request['album'] == $requestLagu['album'] ? $rules['album'] : null;
+
+        $validate = $request->validate($rules);
+
+        RequestLagu::where('id', $requestLagu->id)->update($validate);
+
+        return redirect('/request-lagu')->with('success', 'Edited Successfully!');
     }
 
     /**
@@ -85,6 +112,8 @@ class RequestLaguController extends Controller
      */
     public function destroy(RequestLagu $requestLagu)
     {
-        //
+        RequestLagu::destroy($requestLagu->id);
+
+        return redirect('/request-lagu')->with('success', 'Deleted Successfully!');
     }
 }

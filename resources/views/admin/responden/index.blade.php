@@ -27,7 +27,6 @@
                 {{ session('success') }}
             </div>
             @endif
-            <a href="/responden/create" class="btn btn-sm btn-primary">Tambah</a>
         </div>
         <div class="card-body">
             <table class="table">

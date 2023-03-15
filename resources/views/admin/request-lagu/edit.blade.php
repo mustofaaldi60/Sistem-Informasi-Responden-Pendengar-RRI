@@ -22,41 +22,75 @@
 <section class="content">
     <div class="card">
         <div class="card-body">
-            <form action="/lagu/{{ $lagus->id }}" method="POST">
+            <form action="/request-lagu/{{ $lagus->id }}" method="POST">
                 @csrf
                 @method('put')
                 <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" class="form-control @error('nama')
-                is-invalid
-            @enderror" id="nama" placeholder="Example: RRI Pro 1" required autofocus value="{{ old('nama',$lagus->nama) }}" name="nama">
-                    @error('nama')
+                    <label for="guest_name">Name</label>
+                    <input type="text" class="form-control @error('guest_name')
+            is-invalid
+        @enderror" id="guest_name" placeholder="Example: Budi, Tono, Alex" required autofocus value="{{ old('guest_name',$lagus->guest_name) }}" name="guest_name">
+                    @error('guest_name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="slug">Slug</label>
-                    <input type="text" class="form-control @error('slug')
-                is-invalid
-            @enderror" id="slug" placeholder="Example: rri-pro-1" required readonly value="{{ old('slug',$lagus->slug) }}" name="slug">
-                    @error('slug')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control @error('title')
+                        is-invalid
+                    @enderror" id="title" placeholder="Example: Renegades, Wonder" required autofocus value="{{ old('title',$lagus->title) }}" name="title">
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="genre">Genre</label>
+                            <input type="text" class="form-control @error('genre')
+                        is-invalid
+                    @enderror" id="genre" placeholder="Example: Pop, Rock, Post-hardcore" required value="{{ old('genre',$lagus->genre) }}" name="genre">
+                            @error('genre')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="frekuensi">Frekuensi</label>
-                    <input type="text" class="form-control @error('frekuensi')
-                is-invalid
-            @enderror" id="frekuensi" placeholder="Example: 88.45 FM" required value="{{ old('frekuensi',$siarans->frekuensi) }}" name="frekuensi">
-                    @error('frekuensi')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="artis">Singer / Band</label>
+                            <input type="text" class="form-control @error('artis')
+                    is-invalid
+                @enderror" id="artis" placeholder="Example: ONE OK ROCK, ST12, Kangen Band" required value="{{ old('artis',$lagus->artis) }}" name="artis">
+                            @error('artis')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="album">Album</label>
+                            <input type="text" class="form-control @error('album')
+                    is-invalid
+                @enderror" id="album" placeholder="Example: 35xxxv, Ambitions, Eye of the Storm, Luxury Disease" required value="{{ old('album',$lagus->album) }}" name="album">
+                            @error('album')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
                 <div class="d-flex justify-content-center align-items-center">
                     <button type="submit" class="btn btn-primary">Submit</button>

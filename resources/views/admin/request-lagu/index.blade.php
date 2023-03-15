@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="h1 text-dark">Lagu Page</h1>
+                <h1 class="h1 text-dark">Page Request Lagu</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -34,7 +34,9 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
+                        <th scope="col">Guest Name</th>
                         <th scope="col">Title</th>
+                        <th scope="col">Artis / Band</th>
                         <th scope="col">Genre</th>
                         <th scope="col">Album</th>
                         <th scope="col">Action</th>
@@ -44,7 +46,9 @@
                     @foreach ($lagus as $lagu)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
+                        <td>{{ $lagu->guest_name }}</td>
                         <td>{{ $lagu->title }}</td>
+                        <td>{{ $lagu->artis }}</td>
                         <td>{{ $lagu->genre }}</td>
                         <td>{{ $lagu->album }}</td>
                         <td>

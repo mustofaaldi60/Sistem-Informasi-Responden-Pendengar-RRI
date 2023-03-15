@@ -1,8 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{LoginController, RegisterController};
-use App\Http\Controllers\Admin\{AcaraController, RespondenController, RequestLaguController, SiaranController, HomeController};
+use App\Http\Controllers\{
+    RegisterController,
+    LoginController
+};
+use App\Http\Controllers\Admin\{
+    HomeController,
+    AcaraController,
+    RespondenController,
+    RequestLaguController,
+    SiaranController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +59,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Request Lagu
     Route::resource('/request-lagu', RequestLaguController::class)->except('show');
+
+    // Request Lagu
+    Route::resource('/lagu', LaguController::class);
 
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
