@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{LoginController, RegisterController};
-use App\Http\Controllers\Admin\{AcaraController, RespondenController, SiaranController};
+use App\Http\Controllers\Admin\{AcaraController, RespondenController, RequestLaguController, SiaranController, HomeController};
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     // Dashboard Page
-    Route::get('/home', fn () => view('admin.home'));
+    Route::get('/home', HomeController::class);
 
     // Siaran
     Route::resource('/siaran', SiaranController::class)->except('show');
@@ -45,8 +45,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/acara', AcaraController::class)->except('show');
 
     // Responden
-    Route::resource('/responden', RespondenController::class)->only(['index','destroy']);
-    Route::get('/responden/cetak', [RespondenController::class,'cetak'])->name('responden.cetak');
+    Route::resource('/responden', RespondenController::class)->only(['index', 'destroy']);
+    Route::get('/responden/cetak', [RespondenController::class, 'cetak'])->name('responden.cetak');
+
+    // Request Lagu
+    Route::resource('/request-lagu', RequestLaguController::class)->except('show');
 
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

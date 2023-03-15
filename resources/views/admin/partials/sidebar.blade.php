@@ -35,6 +35,14 @@
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="/request-lagu" class="nav-link">
+                <i class="nav-icon fas fa-copyright"></i>
+                <p>
+                    Request Lagu
+                </p>
+            </a>
+        </li>
     </ul>
 </nav>
 <!-- /.sidebar-menu -->

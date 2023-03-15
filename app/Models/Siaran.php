@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Acara;
 
 class Siaran extends Model
 {
@@ -16,6 +17,11 @@ class Siaran extends Model
     protected $guarded = ['id'];
 
     protected $fillable = ['nama', 'slug', 'frekuensi'];
+
+    public function acaras()
+    {
+        return $this->hasMany(Acara::class);
+    }
 
     /**
      * Return the sluggable configuration array for this model.
