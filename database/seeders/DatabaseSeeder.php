@@ -23,11 +23,11 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             UserSeeder::class,
-            AcaraSeeder::class,
-            RespondenSeeder::class,
             SiaranSeeder::class,
+            LaguSeeder::class,
             RequestLaguSeeder::class,
-            LaguSeeder::class
+            RespondenSeeder::class,
+            AcaraSeeder::class,
         ]);
     }
 }

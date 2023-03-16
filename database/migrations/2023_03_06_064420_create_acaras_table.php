@@ -17,6 +17,7 @@ class CreateAcarasTable extends Migration
             $table->id();
             $table->foreignId('siaran_id');
             $table->string('nama')->nullable();
+            $table->string('slug')->unique()->nullable();
             $table->string('jenis')->nullable();
             $table->string('penyiar')->nullable();
             $table->date('hari')->nullable();

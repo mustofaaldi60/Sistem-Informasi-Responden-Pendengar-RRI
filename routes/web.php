@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{
+use App\Http\Controllers\Auth\{
     RegisterController,
     LoginController
 };
 use App\Http\Controllers\Admin\{
     HomeController,
     AcaraController,
+    LaguController,
     RespondenController,
     RequestLaguController,
     SiaranController,
@@ -52,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Acara
     Route::resource('/acara', AcaraController::class)->except('show');
+    Route::get('/acara/checkSlug', [AcaraController::class, 'checkSlug'])->name('acara.slug');
 
     // Responden
     Route::resource('/responden', RespondenController::class)->only(['index', 'destroy']);
@@ -60,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
     // Request Lagu
     Route::resource('/request-lagu', RequestLaguController::class)->except('show');
 
-    // Request Lagu
+    // Lagu
     Route::resource('/lagu', LaguController::class);
 
     // Logout

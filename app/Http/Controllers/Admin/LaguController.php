@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Lagu;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LaguController extends Controller
 {
@@ -14,7 +15,9 @@ class LaguController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.lagu.index',[
+            'lagus' => Lagu::latest()->paginate(10)
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class LaguController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.lagu.create');
     }
 
     /**
@@ -46,7 +49,9 @@ class LaguController extends Controller
      */
     public function show(Lagu $lagu)
     {
-        //
+        return view('admin.lagu.show',[
+            'lagu' => Lagu::find($lagu)
+        ]);
     }
 
     /**
@@ -57,7 +62,9 @@ class LaguController extends Controller
      */
     public function edit(Lagu $lagu)
     {
-        //
+        return view('admin.lagu.edit',[
+            'lagus' => $lagu
+        ]);
     }
 
     /**
@@ -80,6 +87,8 @@ class LaguController extends Controller
      */
     public function destroy(Lagu $lagu)
     {
-        //
+        Lagu::destroy($lagu->id);
+
+        return redirect('/lagu')->with('success','Deleted Successfully!');
     }
 }

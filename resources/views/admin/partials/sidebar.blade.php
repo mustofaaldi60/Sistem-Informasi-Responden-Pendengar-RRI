@@ -37,9 +37,17 @@
         </li>
         <li class="nav-item">
             <a href="/request-lagu" class="nav-link">
-                <i class="nav-icon fas fa-copyright"></i>
+                <i class="nav-icon fas fa-microphone-alt"></i>
                 <p>
                     Request Lagu
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/lagu" class="nav-link">
+                <i class="nav-icon fas fa-microphone"></i>
+                <p>
+                    Lagu
                 </p>
             </a>
         </li>

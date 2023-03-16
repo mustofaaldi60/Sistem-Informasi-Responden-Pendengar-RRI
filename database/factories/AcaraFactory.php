@@ -15,6 +15,7 @@ class AcaraFactory extends Factory
     {
         return [
             'nama' => $this->faker->randomElement(['Obrolan Komunitas', 'Serenada', 'Orolan Malam Ini', 'Halo Kaltim']),
+            'slug' => $this->faker->slug(),
             'jenis' => $this->faker->randomElement(['Request Lagu', 'Responden']),
             'siaran_id' => mt_rand(1, 3),
             'penyiar' => $this->faker->randomElement(['Aldi Mustofa', 'Viola Dwi Prastica W', 'Deuwi Satriya Irawan']),

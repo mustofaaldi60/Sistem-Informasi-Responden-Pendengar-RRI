@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Acara;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Acara;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Siaran extends Model
 {
@@ -17,11 +18,6 @@ class Siaran extends Model
     protected $guarded = ['id'];
 
     protected $fillable = ['nama', 'slug', 'frekuensi'];
-
-    public function acaras()
-    {
-        return $this->hasMany(Acara::class);
-    }
 
     /**
      * Get the route key for the model.
@@ -45,5 +41,15 @@ class Siaran extends Model
                 'source' => 'nama'
             ]
         ];
+    }
+
+    /**
+     * Get the acaras that owns the Siaran
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function acaras() : HasMany
+    {
+        return $this->hasMany(Acara::class);
     }
 }

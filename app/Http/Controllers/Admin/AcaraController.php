@@ -6,6 +6,7 @@ use App\Models\Acara;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Siaran;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AcaraController extends Controller
 {
@@ -43,6 +44,7 @@ class AcaraController extends Controller
     {
         $validate = $request->validate([
             'nama' => ['required','min:4','max:255','string'],
+            'slug' => ['required','string','unique:acaras'],
             'jenis' => ['required','min:4','max:255','string'],
             'penyiar' => ['required','min:4','max:255','string'],
             'hari' => ['required','string'],
@@ -91,12 +93,15 @@ class AcaraController extends Controller
     {
         $rules = [
             'nama' => ['required','min:4','max:255','string'],
+            'slug' => ['required','string'],
             'jenis' => ['required','min:4','max:255','string'],
             'penyiar' => ['required','min:4','max:255','string'],
             'hari' => ['required','string'],
             'jam' => ['required','string'],
             'siaran_id' => ['required'],
         ];
+
+        $request['slug'] == $acara['slug'] ? $rules['slug'] : $rules['slug'] = ['required','string','unique:acaras'] ;
 
         $validate = $request->validate($rules);
 
@@ -116,5 +121,12 @@ class AcaraController extends Controller
         Acara::destroy($acara->id);
 
         return redirect('/acara')->with('success','Deleted Successfully!');
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Acara::class, 'slug', $request->nama);
+
+        return response()->json(['slug' => $slug]);
     }
 }
