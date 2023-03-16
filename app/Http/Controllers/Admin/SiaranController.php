@@ -84,8 +84,8 @@ class SiaranController extends Controller
     public function update(Request $request, Siaran $siaran)
     {
         $rules = [
-            'nama' => ['required','string'],
-            'frekuensi' => ['required','string'],
+            'nama' => ['required','string','min:4','max:255'],
+            'frekuensi' => ['required','string','min:4','max:255'],
         ];
 
         $request['slug'] == $siaran['slug'] ? $rules['slug'] = ['required','string'] : $rules['slug'] = ['required','string','unique:siarans'] ;
