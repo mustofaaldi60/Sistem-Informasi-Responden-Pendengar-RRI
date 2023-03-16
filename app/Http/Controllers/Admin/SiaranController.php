@@ -85,16 +85,10 @@ class SiaranController extends Controller
     {
         $rules = [
             'nama' => ['required','string'],
-            'slug' => ['required','string'],
             'frekuensi' => ['required','string'],
         ];
 
-        // maksud codingan ini tuh,
-        // kalau request slug nya sama dengan data yg di db
-        // rulesnya ikuti yg di atas
-        // kalau beda buat rules baru
-        // yg begini namanya ternary operator, biasa sebagai pengganti if yg panjang banget 
-        $request['slug'] == $siaran['slug'] ? $rules['slug'] : $rules['slug'] = ['required','string','unique:siarans'] ;
+        $request['slug'] == $siaran['slug'] ? $rules['slug'] = ['required','string'] : $rules['slug'] = ['required','string','unique:siarans'] ;
 
         $validate = $request->validate($rules);
 

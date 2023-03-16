@@ -93,7 +93,6 @@ class AcaraController extends Controller
     {
         $rules = [
             'nama' => ['required','min:4','max:255','string'],
-            'slug' => ['required','string'],
             'jenis' => ['required','min:4','max:255','string'],
             'penyiar' => ['required','min:4','max:255','string'],
             'hari' => ['required','string'],
@@ -101,7 +100,7 @@ class AcaraController extends Controller
             'siaran_id' => ['required'],
         ];
 
-        $request['slug'] == $acara['slug'] ? $rules['slug'] : $rules['slug'] = ['required','string','unique:acaras'] ;
+        $request['slug'] == $acara['slug'] ? $rules['slug'] = ['required','string'] : $rules['slug'] = ['required','string','unique:acaras'] ;
 
         $validate = $request->validate($rules);
 

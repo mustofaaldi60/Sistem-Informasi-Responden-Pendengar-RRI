@@ -88,7 +88,8 @@ class RespondenController extends Controller
         return redirect('/responden')->with('success','Deleted Successfully!');
     }
 
-    public function cetak()
+    public function cetak(Responden $responden)
     {
+        return ddd($responden);
     }
 }
