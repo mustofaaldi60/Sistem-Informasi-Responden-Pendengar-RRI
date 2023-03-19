@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -12,9 +12,13 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
-    public function store(RegisterRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validate($request->all());
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email:dns', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
         $validated['password'] = bcrypt($validated['password']);
 

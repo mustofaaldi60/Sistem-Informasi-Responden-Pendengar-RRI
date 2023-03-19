@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Lagu;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreLaguRequest;
+use App\Http\Requests\UpdateLaguRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
 class LaguController extends Controller
@@ -15,7 +18,7 @@ class LaguController extends Controller
      */
     public function index()
     {
-        return view('admin.lagu.index',[
+        return view('admin.lagu.index', [
             'lagus' => Lagu::latest()->paginate(10)
         ]);
     }
@@ -36,9 +39,24 @@ class LaguController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLaguRequest $request)
     {
-        //
+        // validasikan semua yg ada di request
+        $validate = $this->validate($request, [
+            'title' => ['required', 'max:255', 'string'],
+            'artis' => ['required', 'max:255', 'string'],
+            'genre' => ['required', 'max:255', 'string'],
+            'album' => ['required', 'max:255', 'string'],
+            'audio' => ['required', 'mimes:mp3,flac,wav,webm']
+        ]);
+
+        // cek apakah validasi audionya sama dengan request tipe file audio dari form, kalau sama taro audionya di folder audio
+        // kalau gk diisi kosongkan aja
+        $request['audio'] == $request->file('audio') ? $validate['audio'] = $request->file('audio')->store('audios') : null;
+
+        Lagu::create($validate);
+
+        return redirect('/lagu')->with('success', 'Added Successfully!');
     }
 
     /**
@@ -49,7 +67,7 @@ class LaguController extends Controller
      */
     public function show(Lagu $lagu)
     {
-        return view('admin.lagu.show',[
+        return view('admin.lagu.show', [
             'lagu' => Lagu::find($lagu)
         ]);
     }
@@ -62,7 +80,7 @@ class LaguController extends Controller
      */
     public function edit(Lagu $lagu)
     {
-        return view('admin.lagu.edit',[
+        return view('admin.lagu.edit', [
             'lagus' => $lagu
         ]);
     }
@@ -74,7 +92,7 @@ class LaguController extends Controller
      * @param  \App\Models\Lagu  $lagu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lagu $lagu)
+    public function update(UpdateLaguRequest $request, Lagu $lagu)
     {
         //
     }
@@ -89,6 +107,10 @@ class LaguController extends Controller
     {
         Lagu::destroy($lagu->id);
 
-        return redirect('/lagu')->with('success','Deleted Successfully!');
+        if($lagu->audio){
+            Storage::delete([$lagu->audio]);
+        }
+
+        return redirect('/lagu')->with('success', 'Deleted Successfully!');
     }
 }

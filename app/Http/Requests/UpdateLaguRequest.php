@@ -13,7 +13,7 @@ class UpdateLaguRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateLaguRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['required', 'max:255', 'string'],
+            'artis' => ['required', 'max:255', 'string'],
+            'genre' => ['required', 'max:255', 'string'],
+            'album' => ['required', 'max:255', 'string'],
+            'audio' => ['required', 'mimes:mp3,flac,wav,webm']
         ];
     }
 }
