@@ -13,5 +13,5 @@ class Lagu extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['title', 'artis', 'genre', 'album', 'audio'];
+    protected $fillable = ['title', 'artis', 'genre', 'album', 'audio','cover'];
 }

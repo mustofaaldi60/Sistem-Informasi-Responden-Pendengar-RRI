@@ -28,7 +28,8 @@ class StoreLaguRequest extends FormRequest
             'artis' => ['required', 'max:255', 'string'],
             'genre' => ['required', 'max:255', 'string'],
             'album' => ['required', 'max:255', 'string'],
-            'audio' => ['required', 'mimes:mp3,flac,wav,webm']
+            'audio' => ['required', 'mimes:mp3,flac,wav,webm'],
+            'cover' => ['required', 'mimes:png,jpg,jpeg'],
         ];
     }
 }

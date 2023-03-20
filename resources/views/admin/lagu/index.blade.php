@@ -39,6 +39,7 @@
                         <th scope="col">Genre</th>
                         <th scope="col">Album</th>
                         <th scope="col">Audio</th>
+                        <th scope="col">Cover</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -50,10 +51,22 @@
                         <td>{!! $lagu->artis !!}</td>
                         <td>{!! $lagu->genre !!}</td>
                         <td>{!! $lagu->album !!}</td>
-                        <td><audio controls>
-                                <source src="{{ asset('storage/'. $lagu->audio) }}" type="audio/mp3">
-                            </audio></td>
                         <td>
+                            @if ($lagu->audio)
+                            <audio src="{{ asset('storage/'. $lagu->audio) }}" controls></audio>
+                            @else
+                            <p class="text-danger h2 fs-2">Harap Masukan Lagu</p>
+                            @endif
+                        </td>
+                        <td>
+                            @if ($lagu->cover)
+                            <img src="{{ asset('storage/'. $lagu->cover) }}" alt="{!! $lagu->album !!}" class="w-50 h-50">
+                            @else
+                            <p class="text-danger h2 fs-2">Harap Masukan Gambar</p>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('lagu.show', $lagu->id) }}" class="btn btn-sm btn-info">Show</a>
                             <a href="{{ route('lagu.edit', $lagu->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('lagu.destroy', $lagu->id) }}" method="post" class="d-inline-block">
                                 @csrf

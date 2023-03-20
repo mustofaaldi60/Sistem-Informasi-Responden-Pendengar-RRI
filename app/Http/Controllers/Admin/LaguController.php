@@ -41,18 +41,17 @@ class LaguController extends Controller
      */
     public function store(StoreLaguRequest $request)
     {
-        // validasikan semua yg ada di request
-        $validate = $this->validate($request, [
+        $validate = $this->validate($request,[
             'title' => ['required', 'max:255', 'string'],
             'artis' => ['required', 'max:255', 'string'],
             'genre' => ['required', 'max:255', 'string'],
             'album' => ['required', 'max:255', 'string'],
-            'audio' => ['required', 'mimes:mp3,flac,wav,webm']
+            'audio' => ['required', 'mimes:mp3,flac,wav,webm'],
+            'cover' => ['required', 'mimes:png,jpg,jpeg'],
         ]);
 
-        // cek apakah validasi audionya sama dengan request tipe file audio dari form, kalau sama taro audionya di folder audio
-        // kalau gk diisi kosongkan aja
-        $request['audio'] == $request->file('audio') ? $validate['audio'] = $request->file('audio')->store('audios') : null;
+        $validate['audio'] == $request->file('audio') ? $validate['audio'] = $request->file('audio')->store('audios') : null;
+        $validate['cover'] == $request->file('cover') ? $validate['cover'] = $request->file('cover')->store('images') : null;
 
         Lagu::create($validate);
 
@@ -68,7 +67,7 @@ class LaguController extends Controller
     public function show(Lagu $lagu)
     {
         return view('admin.lagu.show', [
-            'lagu' => Lagu::find($lagu)
+            'lagu' => $lagu
         ]);
     }
 
@@ -81,7 +80,7 @@ class LaguController extends Controller
     public function edit(Lagu $lagu)
     {
         return view('admin.lagu.edit', [
-            'lagus' => $lagu
+            'lagu' => $lagu
         ]);
     }
 
@@ -94,7 +93,37 @@ class LaguController extends Controller
      */
     public function update(UpdateLaguRequest $request, Lagu $lagu)
     {
-        //
+        $rules = [
+            'title' => ['required', 'max:255', 'string'],
+            'artis' => ['required', 'max:255', 'string'],
+            'genre' => ['required', 'max:255', 'string'],
+            'album' => ['required', 'max:255', 'string'],
+            'audio' => ['required', 'mimes:mp3,flac,wav,webm'],
+            'cover' => ['required', 'mimes:png,jpg,jpeg'],
+        ];
+
+        $validate = $request->validate($rules);
+
+        if($request->file('audio')){
+            if($request->oldAudio){
+                Storage::delete([$request->oldAudio]);
+            }
+
+            $validate['audio'] = $request->file('audio')->store('audios');
+        }
+
+        if($request->file('cover')){
+            if($request->oldImage){
+                Storage::delete([$request->oldImage]);
+            }
+
+            $validate['cover'] = $request->file('cover')->store('images');
+        }
+
+
+        Lagu::where('id', $lagu->id)->update($validate);
+
+        return redirect('/lagu')->with('success','Updated Successfully!');
     }
 
     /**

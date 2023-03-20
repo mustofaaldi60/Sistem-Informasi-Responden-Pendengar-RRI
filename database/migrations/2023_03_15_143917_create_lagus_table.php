@@ -20,6 +20,7 @@ class CreateLagusTable extends Migration
             $table->string('genre')->nullable();
             $table->string('album')->nullable();
             $table->string('audio')->nullable();
+            $table->string('cover')->nullable();
             $table->timestamps();
         });
     }
