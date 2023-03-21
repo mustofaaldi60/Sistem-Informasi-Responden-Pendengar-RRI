@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Auth\{
     RegisterController,
     LoginController
 };
+
 use App\Http\Controllers\Admin\{
     HomeController,
     AcaraController,
@@ -14,6 +16,11 @@ use App\Http\Controllers\Admin\{
     SiaranController,
 };
 
+use App\Http\Controllers\Home\AcaraController as Acara;
+use App\Http\Controllers\Home\LaguController as Lagu;
+use App\Http\Controllers\Home\RespondenController as Responden;
+use App\Http\Controllers\Home\RequestLaguController as RequestLagu;
+use App\Http\Controllers\Home\SiaranController as Siaran;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,8 +37,8 @@ use App\Http\Controllers\Admin\{
 // });
 
 Route::middleware(['guest'])->group(function () {
-    // Home Page
-    Route::get('/', fn () => view('home'));
+    // Welcome Page
+    Route::get('/', fn () => view('welcome'));
 
     // Register
     Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -42,28 +49,27 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 });
 
-
 Route::middleware(['auth'])->group(function () {
     // Dashboard Page
     Route::get('/home', HomeController::class);
-
-    // Siaran
-    Route::resource('/siaran', SiaranController::class)->except('show');
-    Route::get('/siaran/checkSlug', [SiaranController::class, 'checkSlug'])->name('siaran.slug');
 
     // Acara
     Route::resource('/acara', AcaraController::class)->except('show');
     Route::get('/acara/checkSlug', [AcaraController::class, 'checkSlug'])->name('acara.slug');
 
-    // Responden
-    Route::resource('/responden', RespondenController::class)->only(['index', 'destroy']);
-    Route::get('/responden/cetak', [RespondenController::class, 'cetak'])->name('responden.cetak');
+    // Lagu
+    Route::resource('/lagu', LaguController::class);
 
     // Request Lagu
     Route::resource('/request-lagu', RequestLaguController::class)->except('show');
 
-    // Lagu
-    Route::resource('/lagu', LaguController::class);
+    // Responden
+    Route::resource('/responden', RespondenController::class)->only(['index', 'destroy']);
+    Route::get('/responden/cetak', [RespondenController::class, 'cetak'])->name('responden.cetak');
+
+    // Siaran
+    Route::resource('/siaran', SiaranController::class)->except('show');
+    Route::get('/siaran/checkSlug', [SiaranController::class, 'checkSlug'])->name('siaran.slug');
 
     // Logout
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
