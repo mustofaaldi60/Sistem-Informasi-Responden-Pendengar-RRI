@@ -38,7 +38,19 @@ use App\Http\Controllers\Home\SiaranController as Siaran;
 
 Route::middleware(['guest'])->group(function () {
     // Welcome Page
-    Route::get('/', fn () => view('welcome'));
+    Route::get('/', fn () => view('home.home'))->name('welcome');
+
+    // Acara
+    Route::get('/g/acara', [Acara::class, 'index'])->name('acara_guest.index');
+
+    //Lagu
+    Route::get('/g/lagu', [Lagu::class, 'index'])->name('lagu_guest.index');
+
+    //Request Lagu
+    Route::get('/g/request', [RequestLagu::class, 'index'])->name('request_guest.index');
+
+    //Responden
+    Route::get('/g/responden', [Responden::class, 'index'])->name('responden_guest.index');
 
     // Register
     Route::get('/register', [RegisterController::class, 'index'])->name('register');

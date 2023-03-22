@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Home;
 
 use App\Models\Acara;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class AcaraController extends Controller
     public function index()
     {
         return view('home.acara.index',[
-            'acaras' => Acara::latest()->get()
+            'acaras' => Acara::latest()->paginate(10)
         ]);
     }
 
