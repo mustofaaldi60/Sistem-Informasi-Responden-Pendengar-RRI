@@ -18,6 +18,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/adminlte.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"/>
+
     <style>
         .nav-height {
             height: 78.125rem;

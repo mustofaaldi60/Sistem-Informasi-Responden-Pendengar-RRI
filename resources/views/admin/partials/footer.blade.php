@@ -10,6 +10,8 @@
   <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
   <!-- date-range-picker -->
   <script src="{{ asset('AdminLTE/plugins/daterangepicker/daterangepicker.js') }}"></script>
+
+  <script src="{{asset('js/app.js')}}"></script>
   <!-- Eloquent Sluggable -->
   <script>
     const nama = document.getElementById('nama');
