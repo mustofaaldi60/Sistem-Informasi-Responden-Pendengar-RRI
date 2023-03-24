@@ -16,11 +16,11 @@ use App\Http\Controllers\Admin\{
     SiaranController,
 };
 
-use App\Http\Controllers\Home\AcaraController as Acara;
+use App\Models\{Acara,Siaran};
+
 use App\Http\Controllers\Home\LaguController as Lagu;
 use App\Http\Controllers\Home\RespondenController as Responden;
 use App\Http\Controllers\Home\RequestLaguController as RequestLagu;
-use App\Http\Controllers\Home\SiaranController as Siaran;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,19 +38,19 @@ use App\Http\Controllers\Home\SiaranController as Siaran;
 
 Route::middleware(['guest'])->group(function () {
     // Welcome Page
-    Route::get('/', fn () => view('home.home'))->name('welcome');
-
-    // Acara
-    Route::get('/g/acara', [Acara::class, 'index'])->name('acara_guest.index');
+    Route::get('/', fn () => view('home.home',[
+        'acaras' => Acara::latest()->paginate(25),
+        'siarans' => Siaran::latest()->paginate(10)
+    ]))->name('welcome');
 
     //Lagu
-    Route::get('/g/lagu', [Lagu::class, 'index'])->name('lagu_guest.index');
+    Route::resource('/g/lagu', Lagu::class)->only(['index','show']);
 
     //Request Lagu
-    Route::get('/g/request', [RequestLagu::class, 'index'])->name('request_guest.index');
+    Route::resource('/g/request-lagu', RequestLagu::class)->only(['create','store']);
 
     //Responden
-    Route::get('/g/responden', [Responden::class, 'index'])->name('responden_guest.index');
+    Route::resource('/g/responden', Responden::class)->only(['create','store']);
 
     // Register
     Route::get('/register', [RegisterController::class, 'index'])->name('register');

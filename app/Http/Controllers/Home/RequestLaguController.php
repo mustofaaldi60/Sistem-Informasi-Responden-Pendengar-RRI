@@ -15,9 +15,7 @@ class RequestLaguController extends Controller
      */
     public function index()
     {
-        return view('home.request-lagu.index',[
-            'lagus' => RequestLagu::latest()->get()
-        ]);
+        //
     }
 
     /**
@@ -27,7 +25,7 @@ class RequestLaguController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.request-lagu.create');
     }
 
     /**
@@ -38,7 +36,17 @@ class RequestLaguController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'title' => ['required', 'string'],
+            'artis' => ['required', 'string'],
+            'genre' => ['required', 'string'],
+            'album' => ['required', 'string'],
+            'guest_name' => ['required', 'string', 'min:8'],
+        ]);
+
+        RequestLagu::create($validate);
+
+        return redirect('/')->with('success', 'Added Successfully!');
     }
 
     /**

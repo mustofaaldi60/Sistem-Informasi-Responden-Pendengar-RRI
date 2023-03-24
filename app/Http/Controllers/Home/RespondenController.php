@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Models\Responden;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Acara;
 
 class RespondenController extends Controller
 {
@@ -15,9 +16,7 @@ class RespondenController extends Controller
      */
     public function index()
     {
-        return view('home.responden.index',[
-            'respondens' => Responden::latest()->get()
-        ]);
+        //
     }
 
     /**
@@ -27,7 +26,9 @@ class RespondenController extends Controller
      */
     public function create()
     {
-        //
+        return view('home.responden.create',[
+            'acaras' => Acara::get()
+        ]);
     }
 
     /**
@@ -38,7 +39,20 @@ class RespondenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'acara_id' => ['required','string'],
+            'respon_pendengar' => ['required','string'],
+            'usia' => ['required','string'],
+            'kelamin' => ['required','string'],
+            'jadwal' => ['required','string'],
+            'telepon' => ['required','string'],
+            'pendengar' => ['required','string'],
+            'rating' => ['required']
+        ]);
+
+        Responden::create($validate);
+
+        return redirect('/');
     }
 
     /**

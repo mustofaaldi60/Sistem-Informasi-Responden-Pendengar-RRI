@@ -123,7 +123,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-center align-items-center">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </div>
       </form>
     </div>

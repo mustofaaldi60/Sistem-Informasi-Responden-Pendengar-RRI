@@ -17,7 +17,7 @@ class LaguController extends Controller
     public function index()
     {
         return view('home.lagu.index',[
-            'lagus' => Lagu::latest()->get()
+            'lagus' => Lagu::latest()->paginate(10)
         ]);
     }
 
@@ -50,7 +50,9 @@ class LaguController extends Controller
      */
     public function show(Lagu $lagu)
     {
-        //
+        return view('home.lagu.show',[
+            'lagu' => $lagu
+        ]);
     }
 
     /**
