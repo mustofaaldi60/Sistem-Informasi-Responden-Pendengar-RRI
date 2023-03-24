@@ -112,6 +112,24 @@
           @enderror
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset class="starability-growRotate">
+                <legend>Rating :</legend>
+                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                <input type="radio" id="rate1" name="rating" value="1" />
+                <label for="rate1" title="Terrible">1 star</label>
+                <input type="radio" id="rate2" name="rating" value="2" />
+                <label for="rate2" title="Not good">2 stars</label>
+                <input type="radio" id="rate3" name="rating" value="3" />
+                <label for="rate3" title="Average">3 stars</label>
+                <input type="radio" id="rate4" name="rating" value="4" />
+                <label for="rate4" title="Very good">4 stars</label>
+                <input type="radio" id="rate5" name="rating" value="5" />
+                <label for="rate5" title="Amazing">5 stars</label>
+              </fieldset>
+        </div>
+    </div>
     <div class="d-flex justify-content-center align-items-center">
       <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </div>

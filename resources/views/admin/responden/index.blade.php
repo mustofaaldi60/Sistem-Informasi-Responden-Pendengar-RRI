@@ -32,7 +32,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">No</th>
             <th scope="col">Jadwal</th>
             <th scope="col">Nama Acara</th>
             <th scope="col">Nama Respon Pendengar</th>
@@ -48,14 +48,14 @@
           @foreach ($respondens as $responden)
           <tr>
             <th scope="row">{{ $loop->iteration }}</th>
-            <td>{{ \Carbon\Carbon::parse($responden->jadwal)->format('D H:i') }}</td>
-            <td>{{ $responden->acara->nama }}</td>
-            <td>{{ $responden->pendengar }}</td>
-            <td>{{ $responden->usia }}</td>
-            <td>{{ $responden->kelamin }}</td>
-            <td>{{ $responden->telepon }}</td>
-            <td>{{ $responden->respon_pendengar}}</td>
-            <td>{{ $responden->rating }}</td>
+            <td>{!! \Carbon\Carbon::parse($responden->jadwal)->format('D H:i') !!}</td>
+            <td>{!! $responden->acara->nama !!}</td>
+            <td>{!! $responden->pendengar !!}</td>
+            <td>{!! $responden->usia !!}</td>
+            <td>{!! $responden->kelamin !!}</td>
+            <td>{!! $responden->telepon !!}</td>
+            <td>{!! $responden->respon_pendengar !!}</td>
+            <td><p class="starability-result" data-rating="{!! $responden->rating !!}"></p></td>
             <td>
               <form action="{{ route('responden.destroy', $responden->id) }}" method="post" class="d-inline-block">
                 @csrf
