@@ -53,7 +53,7 @@
                         <td>{!! $lagu->album !!}</td>
                         <td>
                             @if ($lagu->audio)
-                            <audio src="{{ asset('storage/'. $lagu->audio) }}" controls></audio>
+                            <audio src="{{ asset('storage/'. $lagu->audio) }}" controls type="audio/*"></audio>
                             @else
                             <p class="text-danger h2 fs-2">Harap Masukan Lagu</p>
                             @endif

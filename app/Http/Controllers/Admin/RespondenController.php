@@ -90,6 +90,8 @@ class RespondenController extends Controller
 
     public function cetak(Responden $responden)
     {
-        return ddd($responden);
+        return view('admin.responden.cetak',[
+            'respondens' => $responden
+        ]);
     }
 }

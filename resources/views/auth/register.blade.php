@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="AdminLTE/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body class="hold-transition register-page">
   <div class="register-box">

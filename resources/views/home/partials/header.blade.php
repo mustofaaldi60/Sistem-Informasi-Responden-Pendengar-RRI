@@ -18,6 +18,7 @@
 
     <!-- Starabilty CSS -->
     <link rel="stylesheet" type="text/css" href="Starability/starability-css/starability-all.min.css"/>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('Tempo/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
