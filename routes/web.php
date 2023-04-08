@@ -77,7 +77,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Responden
     Route::resource('/responden', RespondenController::class)->only(['index', 'destroy']);
-    Route::get('/responden/cetak', [RespondenController::class, 'cetak'])->name('responden.cetak');
+    Route::get('/responden/cetak', [RespondenController::class, 'cetakAll'])->name('responden.cetak_all');
 
     // Siaran
     Route::resource('/siaran', SiaranController::class)->except('show');

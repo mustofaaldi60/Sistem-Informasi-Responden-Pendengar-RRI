@@ -88,10 +88,10 @@ class RespondenController extends Controller
         return redirect('/responden')->with('success','Deleted Successfully!');
     }
 
-    public function cetak(Responden $responden)
+    public function cetakAll()
     {
         return view('admin.responden.cetak',[
-            'respondens' => $responden
+            'respondens' => Responden::all()
         ]);
     }
 }
