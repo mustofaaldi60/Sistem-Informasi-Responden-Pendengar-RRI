@@ -104,22 +104,8 @@ class LaguController extends Controller
 
         $validate = $request->validate($rules);
 
-        if($request->file('audio')){
-            if($request->oldAudio){
-                Storage::delete([$request->oldAudio]);
-            }
-
-            $validate['audio'] = $request->file('audio')->store('audios');
-        }
-
-        if($request->file('cover')){
-            if($request->oldImage){
-                Storage::delete([$request->oldImage]);
-            }
-
-            $validate['cover'] = $request->file('cover')->store('images');
-        }
-
+        $request->file('audio') == $request->oldAudio ? Storage::delete([$request->oldAudio]) : $validate['audio'] = $request->file('audio')->store('audios');
+        $request->file('cover') == $request->oldImage ? Storage::delete([$request->oldImage]) : $validate['cover'] = $request->file('cover')->store('images');
 
         Lagu::where('id', $lagu->id)->update($validate);
 
