@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Lagu;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreLaguRequest;
 use App\Http\Requests\UpdateLaguRequest;
 use Illuminate\Support\Facades\Storage;
