@@ -103,8 +103,20 @@ class LaguController extends Controller
 
         $validate = $request->validate($rules);
 
-        $request->file('audio') == $request->oldAudio ? Storage::delete([$request->oldAudio]) : $validate['audio'] = $request->file('audio')->store('audios');
-        $request->file('cover') == $request->oldImage ? Storage::delete([$request->oldImage]) : $validate['cover'] = $request->file('cover')->store('images');
+        if($request->file('audio')){
+            if($request->oldAudio){
+                Storage::delete([$request->oldAudio]);
+            }
+
+            $validate['audio'] = $request->file('audio')->store('audios');
+        }
+        if($request->file('cover')){
+            if($request->oldImage){
+                Storage::delete([$request->oldImage]);
+            }
+
+            $validate['cover'] = $request->file('cover')->store('images');
+        }
 
         Lagu::where('id', $lagu->id)->update($validate);
 
@@ -121,9 +133,8 @@ class LaguController extends Controller
     {
         Lagu::destroy($lagu->id);
 
-        if($lagu->audio){
-            Storage::delete([$lagu->audio]);
-        }
+        $lagu->audio ? Storage::delete([$lagu->audio]) : Lagu::destroy($lagu->id);
+        $lagu->cover ? Storage::delete([$lagu->cover]) : Lagu::destroy($lagu->id);
 
         return redirect('/lagu')->with('success', 'Deleted Successfully!');
     }
