@@ -1,12 +1,17 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+<nav class="main-header navbar navbar-expand navbar-primary navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
+        @auth
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/home" class="nav-link">Home</a>
+            <a href="/" class="nav-link">Home</a>
+        </li>
+        @endauth
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/home" class="nav-link">Dashboard</a>
         </li>
     </ul>
 

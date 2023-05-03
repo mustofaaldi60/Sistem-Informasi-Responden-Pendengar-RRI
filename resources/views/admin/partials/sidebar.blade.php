@@ -3,6 +3,17 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
+        @auth
+
+        <li class="nav-item">
+            <a href="/" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Home
+                </p>
+            </a>
+        </li>
+        @endauth
         <li class="nav-item">
             <a href="/home" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -54,4 +65,3 @@
     </ul>
 </nav>
 <!-- /.sidebar-menu -->
-

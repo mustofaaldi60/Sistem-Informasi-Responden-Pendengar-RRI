@@ -14,11 +14,11 @@ class AcaraFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => $this->faker->randomElement(['Obrolan Komunitas', 'Serenada', 'Orolan Malam Ini', 'Halo Kaltim']),
+            'nama' => $this->faker->randomElement(['Obrolan Komunitas', 'Siaran Langsung di Sekolah', 'Orolan Malam Ini', 'Halo Kaltim']),
             'slug' => $this->faker->slug(),
-            'jenis' => $this->faker->randomElement(['Request Lagu', 'Responden']),
+            'jenis' => $this->faker->randomElement(['Generasi Emas', 'Millenial', 'Event Thunan RRI']),
             'siaran_id' => mt_rand(1, 3),
-            'penyiar' => $this->faker->randomElement(['Aldi Mustofa', 'Viola Dwi Prastica W', 'Deuwi Satriya Irawan']),
+            'penyiar' => $this->faker->randomElement(['Ratih Irawan', 'Ira Ayuandari', 'Sulis']),
             'hari' => $this->faker->date(),
             'jam' => $this->faker->time(),
         ];

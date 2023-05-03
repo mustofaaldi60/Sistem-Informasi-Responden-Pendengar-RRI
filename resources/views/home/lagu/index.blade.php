@@ -18,6 +18,7 @@
                         <th scope="col">Album</th>
                         <th scope="col">Audio</th>
                         <th scope="col">Cover</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">

@@ -140,6 +140,10 @@ class LaguController extends Controller
             Storage::delete([$lagu->audio]);
         }
 
+        if($lagu->cover){
+            Storage::delete([$lagu->cover]);
+        }
+
         return redirect('/lagu')->with('success', 'Deleted Successfully!');
     }
 }

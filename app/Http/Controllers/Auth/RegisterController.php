@@ -16,7 +16,7 @@ class RegisterController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email:dns', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -24,6 +24,6 @@ class RegisterController extends Controller
 
         User::create($validated);
 
-        return redirect()->to('/home');
+        return redirect('/home');
     }
 }

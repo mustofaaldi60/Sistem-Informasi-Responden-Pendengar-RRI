@@ -32,10 +32,6 @@ use App\Http\Controllers\Home\RequestLaguController as RequestLagu;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::middleware(['guest'])->group(function () {
     // Welcome Page
     Route::get('/', fn () => view('home.home',[
@@ -77,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Responden
     Route::resource('/responden', RespondenController::class)->only(['index', 'destroy']);
-    Route::get('/responden/cetak', [RespondenController::class, 'cetak'])->name('responden.cetak');
+    // Route::get('/responden/cetak', [RespondenController::class, 'cetak'])->name('responden.cetak');
 
     // Siaran
     Route::resource('/siaran', SiaranController::class)->except('show');
