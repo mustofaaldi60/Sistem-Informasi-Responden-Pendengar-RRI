@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin Responden',
             'email' => 'admin.respondenrri@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('password'), // password
+            'password' => bcrypt('password'),
             'remember_token' => Str::random(10),
         ]);
     }

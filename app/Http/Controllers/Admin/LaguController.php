@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Lagu;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreLaguRequest;
 use App\Http\Requests\UpdateLaguRequest;
 use Illuminate\Support\Facades\Storage;
@@ -111,7 +110,6 @@ class LaguController extends Controller
 
             $validate['audio'] = $request->file('audio')->store('audios');
         }
-
         if($request->file('cover')){
             if($request->oldImage){
                 Storage::delete([$request->oldImage]);
@@ -119,7 +117,6 @@ class LaguController extends Controller
 
             $validate['cover'] = $request->file('cover')->store('images');
         }
-
 
         Lagu::where('id', $lagu->id)->update($validate);
 
@@ -136,9 +133,8 @@ class LaguController extends Controller
     {
         Lagu::destroy($lagu->id);
 
-        if($lagu->audio){
-            Storage::delete([$lagu->audio]);
-        }
+        $lagu->audio ? Storage::delete([$lagu->audio]) : Lagu::destroy($lagu->id);
+        $lagu->cover ? Storage::delete([$lagu->cover]) : Lagu::destroy($lagu->id);
 
         if($lagu->cover){
             Storage::delete([$lagu->cover]);

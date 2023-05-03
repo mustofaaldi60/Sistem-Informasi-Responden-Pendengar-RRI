@@ -9,6 +9,7 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('Tempo') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 
 </body>
 

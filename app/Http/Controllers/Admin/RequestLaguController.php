@@ -92,10 +92,10 @@ class RequestLaguController extends Controller
             'guest_name' => ['required', 'string', 'min:8']
         ];
 
-        $request['title'] == $requestLagu['title'] ? $rules['title'] : null;
-        $request['artis'] == $requestLagu['artis'] ? $rules['artis'] : null;
-        $request['genre'] == $requestLagu['genre'] ? $rules['genre'] : null;
-        $request['album'] == $requestLagu['album'] ? $rules['album'] : null;
+        $request->title == $requestLagu->title ? $rules['title'] : null;
+        $request->artis == $requestLagu->artis ? $rules['artis'] : null;
+        $request->genre == $requestLagu->genre ? $rules['genre'] : null;
+        $request->album == $requestLagu->album ? $rules['album'] : null;
 
         $validate = $request->validate($rules);
 
